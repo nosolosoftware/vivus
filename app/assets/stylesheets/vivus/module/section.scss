@@ -1,7 +1,6 @@
 #vivus-body {
   margin-left: 250px;
-  max-width: 950px;
-  padding: 30px;
+  background: #fbfbfb;
 
   @include respond-to("small") {
     margin: 0;
@@ -10,7 +9,8 @@
 
   ul.vivus-sections {
     margin: 0;
-    padding: 0;
+    padding: 30px;
+    max-width: 1024px;
 
     li.vivus-section {
       list-style: none;

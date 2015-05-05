@@ -1,29 +1,36 @@
 #vivus-navigation {
   float: left;
-  max-width: 250px;
+  position: fixed;
+  overflow-y: auto;
+  z-index: 1000000;
+  left: 0;
+  top: 0;
+
   width: 100%;
   height: 100%;
+  max-width: 250px;
+  max-height: 100%;
   margin: 0;
-  background-color: #24281A;
-  z-index: 1000000;
-  overflow-y: auto;
+
+  background-color: #f5f5f5;
+  border-right: 1px solid #DFE1E8;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+  color: #454444;
+  text-transform: none;
 
   @include respond-to("small") {
     display: none;
   }
-
-  max-height: 100%;
-  position: fixed;
-  left: 0;
-  top: 0;
-
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  font-weight: 300;
+  .vivus-navigation-title {
+    font-size: 1.3em;
+    padding: 0 1em 0.67em ;
+    border-bottom: 1px solid #DFE1E8;
+  }
 
   ul {
     padding: 0;
     margin: 0;
-    color: #D5D5D3;
 
     li {
       margin-bottom: 5px;
@@ -42,7 +49,7 @@
         &.active {
           margin-left: 0;
           padding-left: 15px;
-          border-left: 5px solid #F3DF6C;
+          border-left: 5px solid #08C;
 
           ul {
             li {
@@ -51,9 +58,7 @@
           }
         }
 
-        a {
-          color: #F3DF6C;
-        }
+        a { color: #454444; }
 
         ul {
           margin-top: 10px;
@@ -69,7 +74,7 @@
           margin: 0 10px 5px 10px;
 
           a {
-            color: #D5D5D3;
+            color: #888888;
 
             &:hover {
               color: #F3DF6C;

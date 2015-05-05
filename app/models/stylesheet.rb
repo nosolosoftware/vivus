@@ -14,9 +14,10 @@ class Stylesheet
       section = find_section_for(comment)
       description = find_description_for(comment)
       example = find_example_for(comment)
+      variants = find_variants_for(comment)
       url = find_url_for(comment)
 
-      if name.present? || section.present? || description.present? || example.present? || url.present?
+      if name.present? || section.present? || description.present? || example.present? || variants.present? ||url.present?
         component = Component.new
 
         component.source = @file_path
@@ -30,6 +31,7 @@ class Stylesheet
 
         component.description = description if description
         component.example = example if example
+        component.variants = variants if variants
         component.url = url if url
 
         documentation << component
@@ -47,7 +49,7 @@ class Stylesheet
   end
 
   def find_name_for comment
-    regex = /\[Name\](.*?)(\[Section\]|\[Description\]|\[Example\]|\[Url\]|\*\/|\z)/m
+    regex = /\[Name\](.*?)(\[Section\]|\[Description\]|\[Example\]|\[Variants\]|\[Url\]|\*\/|\z)/m
     result = scan_comment(comment, regex)
     if result.present?
       result.first[1].strip
@@ -55,7 +57,7 @@ class Stylesheet
   end
 
   def find_section_for comment
-    regex = /\[Section\](.*?)(\[Name\]|\[Description\]|\[Example\]|\[Url\]|\*\/|\z)/m
+    regex = /\[Section\](.*?)(\[Name\]|\[Description\]|\[Example\]|\[Variants\]|\[Url\]|\*\/|\z)/m
     result = scan_comment(comment, regex)
     if result.present?
       result.first[1].strip
@@ -63,7 +65,7 @@ class Stylesheet
   end
 
   def find_description_for comment
-    regex = /\[Description\](.*?)(\[Name\]|\[Section\]|\[Example\]|\[Url\]|\*\/|\z)/m
+    regex = /\[Description\](.*?)(\[Name\]|\[Section\]|\[Example\]|\[Variants\]|\[Url\]|\*\/|\z)/m
     result = scan_comment(comment, regex)
     if result.present?
       result.first[1].strip
@@ -71,7 +73,15 @@ class Stylesheet
   end
 
   def find_example_for comment
-    regex = /\[Example\](.*?)(\[Name\]|\[Section\]|\[Description\]|\[Url\]|\*\/|\z)/m
+    regex = /\[Example\](.*?)(\[Name\]|\[Section\]|\[Description\]|\[Variants\]|\[Url\]|\*\/|\z)/m
+    result = scan_comment(comment, regex)
+    if result.present?
+      result.first[1].strip
+    end
+  end
+
+  def find_variants_for comment
+    regex = /\[Variants\](.*?)(\[Name\]|\[Section\]|\[Description\]|\[Example\]|\[Url\]|\*\/|\z)/m
     result = scan_comment(comment, regex)
     if result.present?
       result.first[1].strip
@@ -79,7 +89,7 @@ class Stylesheet
   end
 
   def find_url_for comment
-    regex = /\[Url\](.*?)(\[Name\]|\[Section\]|\[Description\]|\[Example\]|\*\/|\z)/m
+    regex = /\[Url\](.*?)(\[Name\]|\[Section\]|\[Description\]|\[Example\]|\[Variants\]|\*\/|\z)/m
     result = scan_comment(comment, regex)
     if result.present?
       result.first[1].strip

@@ -1,33 +1,48 @@
+.vivus-section-title {
+  text-transform: none;
+  color: #454444;
+  padding: 0;
+  margin: 0;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+  text-transform: none;
+}
+
 li.vivus-component {
   list-style: none;
   margin-bottom: 40px;
 
   .vivus-documentation {
-    margin: 0 0 40px 0;
+    padding: 30px 0 40px;
     font-size: 15px;
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-weight: 300;
+    text-transform: none;
+    color: #5A5A5A;
 
     > h1 {
-      color: #C93312;
+      color: #454444;
     }
 
     > h2 {
       padding-top: 50px;
+      color: #454444;
     }
 
     > ul, ol {
       list-style-position: inside;
-      margin-bottom: 40px;
     }
 
     .todo {
       color: #C93312;
     }
 
+    pre { background-color: #f7f7f9; }
+
     code {
       font-size: 13px;
-      color: #660000;
+      color: #08C;
       font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
       font-weight: 300;
       @import 'syntax-highlighting';
@@ -37,8 +52,9 @@ li.vivus-component {
   .vivus-example {
     @include clearfix;
     margin: 0 0 40px 0;
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
+    padding: 30px;
+    border-bottom: 1px solid #DFE1E8;
+    border-top: 1px solid #DFE1E8;
 
     .vivus-title {
       font-size: 15px;
@@ -50,18 +66,27 @@ li.vivus-component {
   }
 
   .vivus-code {
-    > em.vivus-source {
-      padding: 10px;
-      color: #bbb;
+    margin-top: -26px;
+    text-transform: none;
+
+    > span.vivus-source {
+      padding: 10px 0;
+      color: #9D9D9D;
+      font-style: italic;
+      font-size: 13px;
+      font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     }
 
     > pre {
       font-family: monospace;
       word-wrap: break-word;
-      margin: 0px;
+      margin-top: 4px;
       padding: 10px;
-      font-size: 14px;
+      font-size: 13.5px;
       margin-bottom: 20px;
+      background: #f5f5f5;
+      border: 1px solid #DFE1E8;
+      color: #5A5A5A;
 
       @import 'syntax-highlighting';
     }
@@ -73,38 +98,36 @@ li.vivus-component {
 
   .vivus-tabbed {
     $tab_height: 32px;
-    $border_color: #999;
+    $border_color: #DFE1E8;
 
     height: $tab_height;
-    border-bottom: 1px solid $border_color;
-    margin-bottom: 10px;
+    margin-bottom: 11px;
 
     .vivus-tab{
       border-top-left-radius: 4px;
       border-top-right-radius: 4px;
 
-      border: 1px solid #bbb;
+      border: 1px solid $border_color;
       border-bottom: none;
       position:relative;
       z-index: 2;
       float: right;
       display: block;
-      font-weight: bold;
-      color: #b2b2b2;
+      font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+      text-transform: none;
+      color: #454444;
       height: $tab_height - 7px;
-      padding: 6px 32px 0 32px;
-      bottom: -1px;
-      margin-right: 10px;
-      font-size: 11px;
+      padding: 1px 32px 0 32px;
+      margin-left: 10px;
+      font-size: 13px;
 
       &.vivus-active{
         border-color: $border_color;
-        color: #333333;
-        background-color: white;
+        background-color: #f5f5f5;
       }
 
       &:hover{
-        color: #333333;
+        color: #000000;
       }
     }
   }
