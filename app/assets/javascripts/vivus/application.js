@@ -8,10 +8,6 @@ $(document).ready(function() {
       hljs.highlightBlock(el);
     });
 
-    $('h2.vivus-name').each(function(i, el) {
-      $(el).before("<a name='" + $(el).text().toLowerCase().replace(',', '').replace(/ /g, '-') +"'></a>");
-    })
-
     $('.vivus-documentation *:contains("TODO:")').html(function(_, html) {
        return html.split('TODO:').join("<span class='todo'>TODO:</span>");
     });
