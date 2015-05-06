@@ -50,6 +50,15 @@ li.vivus-component {
     }
   }
 
+  .vivus-source-title {
+    font-size: 15px;
+  }
+
+  .vivus-source {
+    font-size: 14px;
+    font-style: italic;
+  }
+
   .vivus-example {
     @include clearfix;
     margin: 0 0 40px 0;
@@ -67,7 +76,6 @@ li.vivus-component {
   }
 
   .vivus-code {
-    margin-top: -26px;
     text-transform: none;
 
     > span.vivus-source {
@@ -81,7 +89,6 @@ li.vivus-component {
     > pre {
       font-family: monospace;
       word-wrap: break-word;
-      margin-top: 4px;
       padding: 10px;
       font-size: 13.5px;
       margin-bottom: 20px;
@@ -102,7 +109,7 @@ li.vivus-component {
     $border_color: #DFE1E8;
 
     height: $tab_height;
-    margin-bottom: 11px;
+    margin-bottom: 12px;
 
     .vivus-tab{
       border-top-left-radius: 4px;

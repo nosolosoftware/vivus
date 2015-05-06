@@ -4,6 +4,14 @@
     <%= link_to("", "", name: component.slug) %>
     <h2 class="vivus-name"><%= component.name %></h2>
     <%= component.display_description %>
+
+    <h3 class="vivus-source-title">Sources</h3>
+    <div class="vivus-source">
+      <%= component.template %>
+    </div>
+    <div class="vivus-source">
+      <%= component.style %>
+    </div>
   </div>
 
   <% if component.example.present? %>
@@ -14,11 +22,10 @@
 
     <div class="vivus-example vivus-block vivus-block-opened <%= 'vivus-example-' + component.slug %>">
       <% if component.statuses %>
-        <% statuses = component.statuses.split(",").map{ |cad| cad.strip} %>
+        <% statuses = component.statuses.split(",").map{ |cad| cad.strip}.unshift('') %>
         <% statuses.each do |status| %>
-          <div class="vivus-presentation-title"><%= status %></div>
-          <div class="vivus-presentation-dont-use">
-            <%= component.display_example_status(status).html_safe %>
+          <div class="vivus-presentation-dont-use" title="<%= status %>">
+            <%= component.display_example(status).html_safe %>
           </div>
         <% end %>
       <% else %>
@@ -29,7 +36,6 @@
     </div>
 
     <div class="vivus-code vivus-block <%= 'vivus-code-' + component.slug %>">
-      <span class="vivus-source">From <%= component.url %></span>
       <pre><%= component.display_example %></pre>
     </div>
   <% end %>

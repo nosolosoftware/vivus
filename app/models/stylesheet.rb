@@ -15,9 +15,10 @@ class Stylesheet
       description = find_description_for(comment)
       example = find_example_for(comment)
       statuses = find_statuses_for(comment)
-      url = find_url_for(comment)
+      template = find_template_for(comment)
+      style = find_style_for(comment)
 
-      if name.present? || section.present? || description.present? || example.present? || statuses.present? ||url.present?
+      if name.present? || section.present? || description.present? || example.present? || statuses.present? ||template.present? ||style.present?
         component = Component.new
 
         component.source = @file_path
@@ -32,7 +33,8 @@ class Stylesheet
         component.description = description if description
         component.example = example if example
         component.statuses = statuses if statuses
-        component.url = url if url
+        component.template = template if template
+        component.style = style if style
 
         documentation << component
       end
@@ -49,7 +51,7 @@ class Stylesheet
   end
 
   def find_name_for comment
-    regex = /\[Name\](.*?)(\[Section\]|\[Description\]|\[Example\]|\[Statuses\]|\[Url\]|\*\/|\z)/m
+    regex = /\[Name\](.*?)(\[Section\]|\[Description\]|\[Example\]|\[Statuses\]|\[Template\]|\[Style\]|\*\/|\z)/m
     result = scan_comment(comment, regex)
     if result.present?
       result.first[1].strip
@@ -57,7 +59,7 @@ class Stylesheet
   end
 
   def find_section_for comment
-    regex = /\[Section\](.*?)(\[Name\]|\[Description\]|\[Example\]|\[Statuses\]|\[Url\]|\*\/|\z)/m
+    regex = /\[Section\](.*?)(\[Name\]|\[Description\]|\[Example\]|\[Statuses\]|\[Template\]|\[Style\]|\*\/|\z)/m
     result = scan_comment(comment, regex)
     if result.present?
       result.first[1].strip
@@ -65,7 +67,7 @@ class Stylesheet
   end
 
   def find_description_for comment
-    regex = /\[Description\](.*?)(\[Name\]|\[Section\]|\[Example\]|\[Statuses\]|\[Url\]|\*\/|\z)/m
+    regex = /\[Description\](.*?)(\[Name\]|\[Section\]|\[Example\]|\[Statuses\]|\[Template\]|\[Style\]|\*\/|\z)/m
     result = scan_comment(comment, regex)
     if result.present?
       result.first[1].strip
@@ -73,7 +75,7 @@ class Stylesheet
   end
 
   def find_example_for comment
-    regex = /\[Example\](.*?)(\[Name\]|\[Section\]|\[Description\]|\[Statuses\]|\[Url\]|\*\/|\z)/m
+    regex = /\[Example\](.*?)(\[Name\]|\[Section\]|\[Description\]|\[Statuses\]|\[Template\]|\[Style\]|\*\/|\z)/m
     result = scan_comment(comment, regex)
     if result.present?
       result.first[1].strip
@@ -81,15 +83,23 @@ class Stylesheet
   end
 
   def find_statuses_for comment
-    regex = /\[Statuses\](.*?)(\[Name\]|\[Section\]|\[Description\]|\[Example\]|\[Url\]|\*\/|\z)/m
+    regex = /\[Statuses\](.*?)(\[Name\]|\[Section\]|\[Description\]|\[Example\]|\[Template\]|\[Style\]|\*\/|\z)/m
     result = scan_comment(comment, regex)
     if result.present?
       result.first[1].strip
     end
   end
 
-  def find_url_for comment
-    regex = /\[Url\](.*?)(\[Name\]|\[Section\]|\[Description\]|\[Example\]|\[Statuses\]|\*\/|\z)/m
+  def find_template_for comment
+    regex = /\[Template\](.*?)(\[Name\]|\[Section\]|\[Description\]|\[Example\]|\[Statuses\]|\[Style\]|\*\/|\z)/m
+    result = scan_comment(comment, regex)
+    if result.present?
+      result.first[1].strip
+    end
+  end
+
+  def find_style_for comment
+    regex = /\[Style\](.*?)(\[Name\]|\[Section\]|\[Description\]|\[Example\]|\[Statuses\]|\[Template\]|\*\/|\z)/m
     result = scan_comment(comment, regex)
     if result.present?
       result.first[1].strip
