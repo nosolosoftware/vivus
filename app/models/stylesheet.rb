@@ -16,9 +16,10 @@ class Stylesheet
       example = find_example_for(comment)
       statuses = find_statuses_for(comment)
       template = find_template_for(comment)
-      style = find_style_for(comment)
+      colors = find_colors_for(comment)
+      icons = find_icons_for(comment)
 
-      if name.present? || section.present? || description.present? || example.present? || statuses.present? ||template.present? ||style.present?
+      if name.present? || section.present? || description.present? || example.present? || statuses.present? ||template.present? ||colors.present? ||icons.present?
         component = Component.new
 
         component.source = @file_path
@@ -34,7 +35,8 @@ class Stylesheet
         component.example = example if example
         component.statuses = statuses if statuses
         component.template = template if template
-        component.style = style if style
+        component.colors = colors if colors
+        component.icons = icons if icons
 
         documentation << component
       end
@@ -51,7 +53,7 @@ class Stylesheet
   end
 
   def find_name_for comment
-    regex = /\[Name\](.*?)(\[Section\]|\[Description\]|\[Example\]|\[Statuses\]|\[Template\]|\[Style\]|\*\/|\z)/m
+    regex = /\[Name\](.*?)(\[Section\]|\[Description\]|\[Example\]|\[Statuses\]|\[Template\]|\[Colors\]|\[Icons\]|\*\/|\z)/m
     result = scan_comment(comment, regex)
     if result.present?
       result.first[1].strip
@@ -59,7 +61,7 @@ class Stylesheet
   end
 
   def find_section_for comment
-    regex = /\[Section\](.*?)(\[Name\]|\[Description\]|\[Example\]|\[Statuses\]|\[Template\]|\[Style\]|\*\/|\z)/m
+    regex = /\[Section\](.*?)(\[Name\]|\[Description\]|\[Example\]|\[Statuses\]|\[Template\]|\[Colors\]|\[Icons\]|\*\/|\z)/m
     result = scan_comment(comment, regex)
     if result.present?
       result.first[1].strip
@@ -67,7 +69,7 @@ class Stylesheet
   end
 
   def find_description_for comment
-    regex = /\[Description\](.*?)(\[Name\]|\[Section\]|\[Example\]|\[Statuses\]|\[Template\]|\[Style\]|\*\/|\z)/m
+    regex = /\[Description\](.*?)(\[Name\]|\[Section\]|\[Example\]|\[Statuses\]|\[Template\]|\[Colors\]|\[Icons\]|\*\/|\z)/m
     result = scan_comment(comment, regex)
     if result.present?
       result.first[1].strip
@@ -75,7 +77,7 @@ class Stylesheet
   end
 
   def find_example_for comment
-    regex = /\[Example\](.*?)(\[Name\]|\[Section\]|\[Description\]|\[Statuses\]|\[Template\]|\[Style\]|\*\/|\z)/m
+    regex = /\[Example\](.*?)(\[Name\]|\[Section\]|\[Description\]|\[Statuses\]|\[Template\]|\[Colors\]|\[Icons\]|\*\/|\z)/m
     result = scan_comment(comment, regex)
     if result.present?
       result.first[1].strip
@@ -83,7 +85,7 @@ class Stylesheet
   end
 
   def find_statuses_for comment
-    regex = /\[Statuses\](.*?)(\[Name\]|\[Section\]|\[Description\]|\[Example\]|\[Template\]|\[Style\]|\*\/|\z)/m
+    regex = /\[Statuses\](.*?)(\[Name\]|\[Section\]|\[Description\]|\[Example\]|\[Template\]|\[Colors\]|\[Icons\]|\*\/|\z)/m
     result = scan_comment(comment, regex)
     if result.present?
       result.first[1].strip
@@ -91,15 +93,23 @@ class Stylesheet
   end
 
   def find_template_for comment
-    regex = /\[Template\](.*?)(\[Name\]|\[Section\]|\[Description\]|\[Example\]|\[Statuses\]|\[Style\]|\*\/|\z)/m
+    regex = /\[Template\](.*?)(\[Name\]|\[Section\]|\[Description\]|\[Example\]|\[Statuses\]|\[Colors\]|\[Icons\]|\*\/|\z)/m
     result = scan_comment(comment, regex)
     if result.present?
       result.first[1].strip
     end
   end
 
-  def find_style_for comment
-    regex = /\[Style\](.*?)(\[Name\]|\[Section\]|\[Description\]|\[Example\]|\[Statuses\]|\[Template\]|\*\/|\z)/m
+  def find_colors_for comment
+    regex = /\[Colors\](.*?)(\[Name\]|\[Section\]|\[Description\]|\[Example\]|\[Statuses\]|\[Template\]|\[Icons\]|\*\/|\z)/m
+    result = scan_comment(comment, regex)
+    if result.present?
+      result.first[1].strip
+    end
+  end
+
+  def find_icons_for comment
+    regex = /\[Icons\](.*?)(\[Name\]|\[Section\]|\[Description\]|\[Example\]|\[Statuses\]|\[Colors\]|\[Template\]|\*\/|\z)/m
     result = scan_comment(comment, regex)
     if result.present?
       result.first[1].strip
