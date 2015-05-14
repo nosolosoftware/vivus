@@ -4,33 +4,33 @@
     <%= link_to("", "", name: component.slug) %>
     <h2 class="vivus-name"><%= component.name %></h2>
     <%= component.display_description %>
-
-    <% if component.icons %>
-      <div class="vivus-icons">
-        <% icons = component.icons.split(",").map{ |cad| cad.strip} %>
-        <% icons.each do |icon| %>
-          <div class="vivus-icon" data-title="<%= icon %>">
-            <i class="icon <%= icon %>"></i>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-
-
-    <% if component.colors %>
-      <div class="vivus-colors">
-        <% colors = component.colors.split(";").map{ |cad| cad.strip} %>
-        <% colors.each do |color| %>
-          <% color = color.split(":").map{ |cad| cad.strip} %>
-          <div class="vivus-color">
-            <div class="vivus-color-box" style="background-color: <%= color[1] %>"></div>
-            <div class="vivus-color-var"><%= color[0] %></div>
-            <div class="vivus-color-value"><%= color[1] %></div>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
   </div>
+
+  <% if component.icons %>
+    <div class="vivus-icons">
+      <% icons = component.icons.split(",").map{ |cad| cad.strip} %>
+      <% icons.each do |icon| %>
+        <div class="vivus-icon" data-title="<%= icon %>">
+          <i class="icon <%= icon %>"></i>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+
+  <% if component.colors %>
+    <div class="vivus-colors">
+      <% colors = component.colors.split(";").map{ |cad| cad.strip} %>
+      <% colors.each do |color| %>
+        <% color = color.split(":").map{ |cad| cad.strip} %>
+        <div class="vivus-color">
+          <div class="vivus-color-box" style="background-color: <%= color[1] %>"></div>
+          <div class="vivus-color-var"><%= color[0] %></div>
+          <div class="vivus-color-value"><%= color[1] %></div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 
   <% if component.example.present? %>
     <nav class="vivus-tabbed">
